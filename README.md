@@ -2,8 +2,6 @@
 
 Custom steam flavored BBCode pandoc writer (convert markdown/HTML/etc to steam formatting!)
 
----
-
 ## Requirements
 - Pandoc
 
