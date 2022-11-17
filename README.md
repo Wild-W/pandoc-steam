@@ -1,12 +1,10 @@
-# pandoc-steam
-
+# Pandoc-Steam
 Custom steam flavored BBCode pandoc writer (convert markdown/HTML/etc to steam formatting!)
 
 ## Requirements
-- Pandoc
+- [Pandoc](https://pandoc.org/installing.html)
 
 ## Demonstration
-
 Markdown
 ```markdown
 # H1
