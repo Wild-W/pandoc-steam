@@ -8,7 +8,7 @@ Custom steam flavored BBCode pandoc writer (convert markdown/HTML/etc to steam f
 ## Demonstration
 
 Markdown
-```md
+```markdown
 # H1
  
 Lorem ipsum dolor sit amet, *consectetur* adipisicing elit, sed do eiusmod
@@ -54,7 +54,7 @@ $ pandoc -t steamwriter.lua test.md
 ```
 
 Steam BBCode
-```
+```bbcode
 [h1]H1[/h1]
 Lorem ipsum dolor sit amet, [i]consectetur[/i] adipisicing elit, sed do eiusmod
 tempor incididunt ut [b]labore et dolore magna aliqua[/b]. Ut enim ad minim veniam,
