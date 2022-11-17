@@ -82,3 +82,6 @@ unordered list:
 [list][*]sub-item-5
 [*]sub-item-6[/list][/list]
 ```
+
+![image](https://user-images.githubusercontent.com/39774593/202514406-504dc3f7-077a-4e0e-92c5-a9d67edea586.png)
+
