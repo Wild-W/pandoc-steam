@@ -4,6 +4,9 @@ Custom steam flavored BBCode pandoc writer (convert markdown/HTML/etc to steam f
 ## Requirements
 - [Pandoc](https://pandoc.org/installing.html)
 
+## Installation
+Just download `steamwriter.lua` from releases or by copy-pasting and use it with Pandoc.
+
 ## Demonstration
 Markdown
 ```markdown
