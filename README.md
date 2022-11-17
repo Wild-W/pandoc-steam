@@ -53,6 +53,10 @@ Convert with pandoc
 ```sh
 $ pandoc -t steamwriter.lua test.md
 ```
+You can specify an output file with the `-o` flag
+```sh
+$ pandoc -t steamwriter.lua test.md -o output.txt
+```
 
 Steam BBCode
 ```bbcode
