@@ -13,32 +13,36 @@
 -- produce informative error messages if your code contains
 -- syntax errors.
 
+-- The global variable PANDOC_DOCUMENT contains the full AST of
+-- the document which is going to be written. It can be used to
+-- configure the writer.
+local meta
+local image_format
+
 -- As of Pandoc 3.0
 function Writer (doc, opts)
   PANDOC_DOCUMENT = doc
   PANDOC_WRITER_OPTIONS = opts
   loadfile(PANDOC_SCRIPT_FILE)()
+  
+  meta = PANDOC_DOCUMENT.meta
+  image_format = meta.image_format and stringify(meta.image_format) or 'png'
+  
+  -- Choose the image format based on the value of the
+  -- `image_format` meta value.
+  local image_mime_type = ({
+      jpeg = 'image/jpeg',
+      jpg = 'image/jpeg',
+      gif = 'image/gif',
+      png = 'image/png',
+      svg = 'image/svg+xml'
+  })[image_format] or error('unsupported image format `' .. image_format .. '`')
+  
   return pandoc.write_classic(doc, opts)
 end
 
 local pipe = pandoc.pipe
 local stringify = (require 'pandoc.utils').stringify
-
--- The global variable PANDOC_DOCUMENT contains the full AST of
--- the document which is going to be written. It can be used to
--- configure the writer.
-local meta = PANDOC_DOCUMENT.meta
-
--- Choose the image format based on the value of the
--- `image_format` meta value.
-local image_format = meta.image_format and stringify(meta.image_format) or 'png'
-local image_mime_type = ({
-    jpeg = 'image/jpeg',
-    jpg = 'image/jpeg',
-    gif = 'image/gif',
-    png = 'image/png',
-    svg = 'image/svg+xml'
-})[image_format] or error('unsupported image format `' .. image_format .. '`')
 
 -- Character escaping
 local function escape(s, in_attribute) -- TODO
@@ -408,13 +412,3 @@ function RawBlock(format, str)
 end
 
 function Div(s, attr) return s end
-
--- The following code will produce runtime warnings when you haven't defined
--- all of the functions you need for the custom writer, so it's useful
--- to include when you're working on a writer.
-local meta = {}
-meta.__index = function(_, key)
-    io.stderr:write(string.format("WARNING: Undefined function '%s'\n", key))
-    return function() return '' end
-end
-setmetatable(_G, meta)
