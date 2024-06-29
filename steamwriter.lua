@@ -12,6 +12,15 @@
 -- use it to test changes to the script.  'lua sample.lua' will
 -- produce informative error messages if your code contains
 -- syntax errors.
+
+-- As of Pandoc 3.0
+function Writer (doc, opts)
+  PANDOC_DOCUMENT = doc
+  PANDOC_WRITER_OPTIONS = opts
+  loadfile(PANDOC_SCRIPT_FILE)()
+  return pandoc.write_classic(doc, opts)
+end
+
 local pipe = pandoc.pipe
 local stringify = (require 'pandoc.utils').stringify
 
